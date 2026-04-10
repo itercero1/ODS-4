@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuizEdu — POC CRUD</title>
+  <link rel="stylesheet" href="css/Style.css" />
 </head>
 <body>
-    
+
+  <header>
+    <h1>QuizEdu — POC</h1>
+  </header>
+
+  <main>
+
+    <section class="card">
+      <h2 id="formTitulo">Añadir jugador</h2>
+      <label>Nombre * <input type="text" id="nombre" /></label>
+      <label>Email *  <input type="email" id="email" /></label>
+      <label>Nivel
+        <select id="nivel">
+          <option value="principiante">Principiante</option>
+          <option value="intermedio">Intermedio</option>
+          <option value="avanzado">Avanzado</option>
+        </select>
+      </label>
+      <label>Puntuación <input type="number" id="puntuacion" value="0" min="0" /></label>
+      <div class="botones">
+        <button class="btn-ok" onclick="guardar()">Guardar</button>
+        <button onclick="cancelar()">Cancelar</button>
+      </div>
+    </section>
+
+    <section class="tabla-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Nivel</th>
+            <th>Puntos</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="modelos/jugador.js"></script>
+  <script src="js/app.js"></script>
+
 </body>
 </html>
