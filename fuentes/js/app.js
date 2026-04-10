@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", () => renderTabla());
 
 // CREATE / UPDATE
 function guardar() {
-  const nombre     = document.getElementById("nombre").value.trim();
-  const email      = document.getElementById("email").value.trim();
+  const nombre = document.getElementById("nombre").value.trim();
+  const email  = document.getElementById("email").value.trim();
   const nivel      = document.getElementById("nivel").value;
   const puntuacion = document.getElementById("puntuacion").value;
 
