@@ -1,93 +1,140 @@
-// app.js — Controlador CRUD (POC)
+// Array donde se guardan los libros
+const libros = [];
 
-const modelo   = new ModeloJugador();
-let editandoId = null;
+// ==============================
+// CREAR
+// ==============================
 
-document.addEventListener("DOMContentLoaded", () => renderTabla());
+// Se ejecuta cuando el usuario hace clic en "Guardar libro"
+document.getElementById("formLibro").addEventListener("submit", function(evento) {
 
-// CREATE / UPDATE
-function guardar() {
-  const nombre = document.getElementById("nombre").value.trim();
-  const email  = document.getElementById("email").value.trim();
-  const nivel      = document.getElementById("nivel").value;
-  const puntuacion = document.getElementById("puntuacion").value;
+  // Evita que la página se recargue
+  evento.preventDefault();
+  console.log("Formulario enviado");
 
-  if (!nombre) { toast("El nombre es obligatorio.", true); return; }
-  if (!email)  { toast("El email es obligatorio.", true);  return; }
+  // Leer los valores del formulario
+  const titulo      = document.getElementById("titulo").value;
+  const autor       = document.getElementById("autor").value;
+  const fecha       = document.getElementById("fecha").value;
+  const categoria   = document.getElementById("categoria").value;
+  const descripcion = document.getElementById("descripcion").value;
+  console.log("Título leído:", titulo);
+  console.log("Autor leído:", autor);
+  console.log("Fecha leída:", fecha);
+  console.log("Categoría leída:", categoria);
+  console.log("Descripción leída:", descripcion);
 
-  if (editandoId) {
-    modelo.actualizar(editandoId, nombre, email, nivel, puntuacion);
-    toast("Jugador actualizado.");
-  } else {
-    modelo.crear(nombre, email, nivel, puntuacion);
-    toast("Jugador creado.");
+  // Leer el radio seleccionado
+  let idioma = "";
+  const idiomaSeleccionado = document.querySelector("input[name='idioma']:checked");
+  if (idiomaSeleccionado != null) {
+    idioma = idiomaSeleccionado.value;
   }
+  console.log("Idioma leído:", idioma);
 
-  cancelar();
-  renderTabla();
-}
+  // Leer los checkboxes marcados
+  let disponibilidad = "";
+  if (document.getElementById("chkFisico").checked) {
+    disponibilidad = disponibilidad + "Físico ";
+  }
+  if (document.getElementById("chkDigital").checked) {
+    disponibilidad = disponibilidad + "Digital ";
+  }
+  if (document.getElementById("chkAudio").checked) {
+    disponibilidad = disponibilidad + "Audiolibro ";
+  }
+  console.log("Disponibilidad leída:", disponibilidad);
 
-// READ
-function renderTabla() {
-  const lista = modelo.obtenerTodos();
-  const tbody = document.getElementById("tbody");
-
-  if (lista.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="5" class="vacio">Sin jugadores. Añade uno arriba.</td></tr>`;
+  // Validación básica
+  if (titulo == "") {
+    console.log("Error: título vacío");
+    alert("El título es obligatorio.");
     return;
   }
+  if (autor == "") {
+    console.log("Error: autor vacío");
+    alert("El autor es obligatorio.");
+    return;
+  }
+  console.log("Validación correcta");
 
-  tbody.innerHTML = lista.map(j => `
-    <tr>
-      <td>${esc(j.nombre)}</td>
-      <td>${esc(j.email)}</td>
-      <td>${j.nivel}</td>
-      <td>${j.puntuacion}</td>
-      <td class="acciones">
-        <button class="btn-editar" onclick="cargarEdicion('${j.id}')">Editar</button>
-        <button class="btn-borrar" onclick="eliminar('${j.id}')">Borrar</button>
-      </td>
-    </tr>
-  `).join("");
-}
+  // Crear el objeto libro
+  const libro = {
+    titulo:         titulo,
+    autor:          autor,
+    fecha:          fecha,
+    categoria:      categoria,
+    idioma:         idioma,
+    disponibilidad: disponibilidad,
+    descripcion:    descripcion
+  };
+  console.log("Objeto libro creado:", libro);
 
-// UPDATE — carga datos en el formulario
-function cargarEdicion(id) {
-  const j = modelo.obtenerPorId(id);
-  if (!j) return;
-  editandoId = id;
-  document.getElementById("nombre").value     = j.nombre;
-  document.getElementById("email").value      = j.email;
-  document.getElementById("nivel").value      = j.nivel;
-  document.getElementById("puntuacion").value = j.puntuacion;
-  document.getElementById("formTitulo").textContent = "Editar jugador";
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+  // Guardar en el array
+  libros.push(libro);
+  console.log("Libro añadido al array");
+  console.log("Array completo:", libros);
 
-// DELETE
-function eliminar(id) {
-  if (!confirm("¿Eliminar este jugador?")) return;
-  modelo.eliminar(id);
-  toast("Jugador eliminado.");
-  renderTabla();
-}
+  // Mostrar el libro en pantalla
+  mostrarLibro(libro);
 
-function cancelar() {
-  editandoId = null;
-  document.getElementById("nombre").value     = "";
-  document.getElementById("email").value      = "";
-  document.getElementById("nivel").value      = "principiante";
-  document.getElementById("puntuacion").value = "0";
-  document.getElementById("formTitulo").textContent = "Añadir jugador";
-}
+  // Limpiar el formulario
+  document.getElementById("formLibro").reset();
+  console.log("Formulario limpiado");
 
-function toast(msg, error = false) {
-  const t = document.getElementById("toast");
-  t.textContent = msg;
-  t.className = "toast " + (error ? "toast-error" : "toast-ok") + " show";
-  setTimeout(() => t.classList.remove("show"), 2400);
-}
+});
 
-function esc(str) {
-  return str.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+// ==============================
+// LISTAR
+// ==============================
+
+// Muestra un libro como una tarjeta en el HTML
+function mostrarLibro(libro) {
+
+  console.log("Ejecutando mostrarLibro con:", libro);
+
+  // Ocultar el mensaje "No hay libros"
+  document.getElementById("vacio").style.display = "none";
+  console.log("Mensaje vacío ocultado");
+
+  // Crear la tarjeta contenedora
+  const tarjeta = document.createElement("div");
+  tarjeta.className = "tarjeta";
+  console.log("Tarjeta creada");
+
+  // Crear un párrafo por cada dato y añadirlo a la tarjeta
+  const pTitulo = document.createElement("p");
+  pTitulo.textContent = "Título: " + libro.titulo;
+  tarjeta.appendChild(pTitulo);
+
+  const pAutor = document.createElement("p");
+  pAutor.textContent = "Autor: " + libro.autor;
+  tarjeta.appendChild(pAutor);
+
+  const pFecha = document.createElement("p");
+  pFecha.textContent = "Fecha: " + libro.fecha;
+  tarjeta.appendChild(pFecha);
+
+  const pCategoria = document.createElement("p");
+  pCategoria.textContent = "Categoría: " + libro.categoria;
+  tarjeta.appendChild(pCategoria);
+
+  const pIdioma = document.createElement("p");
+  pIdioma.textContent = "Idioma: " + libro.idioma;
+  tarjeta.appendChild(pIdioma);
+
+  const pDisponibilidad = document.createElement("p");
+  pDisponibilidad.textContent = "Disponible en: " + libro.disponibilidad;
+  tarjeta.appendChild(pDisponibilidad);
+
+  const pDescripcion = document.createElement("p");
+  pDescripcion.textContent = "Descripción: " + libro.descripcion;
+  tarjeta.appendChild(pDescripcion);
+
+  console.log("Párrafos añadidos a la tarjeta");
+
+  // Añadir la tarjeta al contenedor de la lista
+  document.getElementById("contenedor").appendChild(tarjeta);
+  console.log("Tarjeta añadida a la página");
+
 }

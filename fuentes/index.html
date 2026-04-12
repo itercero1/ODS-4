@@ -2,56 +2,72 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QuizEdu — POC CRUD</title>
-  <link rel="stylesheet" href="css/Style.css" />
+  <title>ODS 4 – Añadir Libro</title>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-  <header>
-    <h1>QuizEdu — POC</h1>
-  </header>
+  <h1>ODS 4 – Educación de Calidad</h1>
 
-  <main>
+  <form id="formLibro">
 
-    <section class="card">
-      <h2 id="formTitulo">Añadir jugador</h2>
-      <label>Nombre * <input type="text" id="nombre" /></label>
-      <label>Email *  <input type="email" id="email" /></label>
-      <label>Nivel
-        <select id="nivel">
-          <option value="principiante">Principiante</option>
-          <option value="intermedio">Intermedio</option>
-          <option value="avanzado">Avanzado</option>
-        </select>
-      </label>
-      <label>Puntuación <input type="number" id="puntuacion" value="0" min="0" /></label>
-      <div class="botones">
-        <button class="btn-ok" onclick="guardar()">Guardar</button>
-        <button onclick="cancelar()">Cancelar</button>
-      </div>
-    </section>
+    <!-- Campo oculto: guarda el ID del libro -->
+    <input type="hidden" id="libroId" value="1" />
 
-    <section class="tabla-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Nivel</th>
-            <th>Puntos</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody id="tbody"></tbody>
-      </table>
-    </section>
+    <!-- Texto corto -->
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" placeholder="Ej: El principito" />
 
-  </main>
+    <label for="autor">Autor:</label>
+    <input type="text" id="autor" placeholder="Ej: Antoine de Saint-Exupéry" />
 
-  <div id="toast" class="toast"></div>
+    <!-- Fecha -->
+    <label for="fecha">Fecha de publicación:</label>
+    <input type="date" id="fecha" />
 
-  <script src="modelos/jugador.js"></script>
+    <!-- Lista desplegable -->
+    <label for="categoria">Categoría:</label>
+    <select id="categoria">
+      <option value="">-- Elige --</option>
+      <option value="Primaria">Primaria</option>
+      <option value="Secundaria">Secundaria</option>
+      <option value="Universidad">Universidad</option>
+      <option value="Adultos">Adultos</option>
+    </select>
+
+    <!-- Opciones de una sola elección -->
+    <label>Idioma:</label>
+    <input type="radio" name="idioma" value="Español" /> Español
+    <input type="radio" name="idioma" value="Inglés" />  Inglés
+    <input type="radio" name="idioma" value="Francés" /> Francés
+
+    <!-- Casillas de múltiple elección -->
+    <label>Disponible en:</label>
+    <input type="checkbox" id="chkFisico"   value="Físico" />   Físico
+    <input type="checkbox" id="chkDigital"  value="Digital" />  Digital
+    <input type="checkbox" id="chkAudio"    value="Audiolibro" /> Audiolibro
+
+    <!-- Texto largo -->
+    <label for="descripcion">Descripción:</label>
+    <textarea id="descripcion" rows="4" placeholder="Resumen del libro..."></textarea>
+
+    <!-- Botones -->
+    <button type="submit">Guardar libro</button>
+    <button type="reset">Limpiar</button>
+
+    <!-- Enlace -->
+    <a href="#lista">Ver libros guardados</a>
+
+  </form>
+
+  <!-- Aquí aparecerán los libros guardados -->
+  <div id="lista">
+    <h2>Libros guardados</h2>
+    <div id="contenedor">
+      <p id="vacio">No hay libros todavía.</p>
+    </div>
+  </div>
+
   <script src="js/app.js"></script>
 
 </body>
