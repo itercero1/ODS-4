@@ -25,8 +25,8 @@
 ## Día 3 
 | Tarea | Quién | Estado |
 |-------|-------|--------|
-| cambios en el css | Iván | Terminado |
-| crear vistas de formulario e historial | Iván | Terminado |
-| terminar el crud | Iván |  Terminado |
-| Avanzar el README del proyecto | Iván |  Terminado |
+| cambios en el css | Iván y Alberto | Terminado |
+| crear vistas de formulario e historial | Ivan y Alejandro | Terminado |
+| terminar el crud | Alejandro |  Terminado |
+| Avanzar el README del proyecto | Alberto |  Terminado |
 

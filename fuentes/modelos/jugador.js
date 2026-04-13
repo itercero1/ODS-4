@@ -16,7 +16,7 @@ class ModeloJugador {
     this.clave = "quizedu_jugadores";
   }
 
-  // CREATE
+  // CREATE  
   crear(nombre, email, nivel, puntuacion) {
     const lista   = this.obtenerTodos();
     const jugador = new Jugador(nombre, email, nivel, puntuacion);
