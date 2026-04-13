@@ -20,3 +20,13 @@
 | Programar el crear libro en JavaScript | Alberto |  Terminado |
 | Programar el listar libros en JavaScript | Alejandro |  Terminado |
 | Hacer el README del proyecto | Iván |  En proceso |
+
+
+## Día 3 
+| Tarea | Quién | Estado |
+|-------|-------|--------|
+| cambios en el css | Iván | Terminado |
+| crear vistas de formulario e historial | Iván | Terminado |
+| terminar el crud | Iván |  Terminado |
+| Avanzar el README del proyecto | Iván |  Terminado |
+
