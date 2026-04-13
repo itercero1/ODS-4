@@ -1,79 +1,211 @@
+/* ============================================================
+   ODS 4 – Educación de Calidad  |  Style.css
+   ============================================================ */
+
+/* ── Estilos generales ─────────────────────────────────────── */
+
 body {
   font-family: Arial, sans-serif;
-  max-width: 600px;
-  margin: 30px auto;
-  padding: 0 16px;
-  background: #f5f5f5;
+  background-color: #f7f7f8;
+  margin: 0;
+  padding: 20px;
+  color: #1a1a2e;
 }
 
 h1 {
-  background: #2e7d32;
+  background-color: #1a1a2e;
   color: white;
-  padding: 16px;
   text-align: center;
+  padding: 22px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 22px;
+  letter-spacing: 1px;
 }
 
-form {
-  background: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
+h2 {
+  color: #1a1a2e;
+  margin-bottom: 14px;
+  font-size: 18px;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 8px;
 }
+
+/* ── Navegación entre vistas ───────────────────────────────── */
+
+#navegacion {
+  max-width: 580px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  gap: 10px;
+}
+
+#navegacion button {
+  margin-top: 0;
+  background-color: white;
+  color: #1a1a2e;
+  border: 1px solid #ddd;
+  flex: 1;
+  font-size: 14px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#navegacion button:hover {
+  background-color: #6c63ff;
+  color: white;
+  border-color: #6c63ff;
+}
+
+/* ── Vistas ────────────────────────────────────────────────── */
+
+#vistaFormulario {
+  display: block;
+}
+
+#vistaHistorial {
+  display: none;
+}
+
+/* ── Formulario ────────────────────────────────────────────── */
+
+form {
+  background-color: white;
+  padding: 28px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-width: 580px;
+  margin: 0 auto 24px auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ── Etiquetas ─────────────────────────────────────────────── */
 
 label {
   display: block;
   font-weight: bold;
-  margin-top: 12px;
-  margin-bottom: 4px;
+  color: #555;
+  font-size: 13px;
+  margin-top: 16px;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
+
+/* ── Campos de texto, fecha, desplegable y textarea ────────── */
 
 input[type="text"],
 input[type="date"],
-input[type="file"],
 select,
 textarea {
   width: 100%;
-  padding: 8px;
-  margin-bottom: 4px;
-  border: 1px solid #bbb;
-  border-radius: 4px;
+  padding: 9px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
   font-size: 14px;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  color: #1a1a2e;
 }
 
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #6c63ff;
+  outline: none;
+  background-color: white;
+}
+
+textarea {
+  height: 90px;
+  resize: vertical;
+}
+
+/* ── Radio y checkbox ──────────────────────────────────────── */
+
+input[type="radio"],
+input[type="checkbox"] {
+  margin-right: 5px;
+  accent-color: #6c63ff;
+}
+
+/* ── Botones ───────────────────────────────────────────────── */
+
 button {
-  margin-top: 14px;
+  margin-top: 18px;
   margin-right: 8px;
-  padding: 10px 18px;
+  padding: 10px 22px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 6px;
   font-size: 14px;
+  cursor: pointer;
 }
 
 button[type="submit"] {
-  background: #2e7d32;
+  background-color: #6c63ff;
   color: white;
 }
 
-button[type="reset"] {
-  background: #ddd;
+button[type="submit"]:hover {
+  background-color: #574fd6;
 }
+
+button[type="reset"] {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+button[type="reset"]:hover {
+  background-color: #e0e0e0;
+}
+
+/* ── Enlace ────────────────────────────────────────────────── */
 
 a {
   display: inline-block;
-  margin-top: 14px;
-  color: #2e7d32;
+  margin-top: 12px;
+  color: #6c63ff;
+  text-decoration: none;
 }
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ── Sección de historial ──────────────────────────────────── */
 
 #lista {
-  background: white;
-  padding: 20px;
-  border: 1px solid #ccc;
+  background-color: white;
+  padding: 28px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  max-width: 580px;
+  margin: 0 auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
 }
 
+#vacio {
+  color: #aaa;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* ── Tarjetas de libro ─────────────────────────────────────── */
+
 .tarjeta {
-  border: 1px solid #ddd;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 4px;
+  border: 1px solid #e8e8f0;
+  border-left: 4px solid #6c63ff;
+  background-color: #fafafa;
+  border-radius: 6px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+.tarjeta p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #444;
 }
