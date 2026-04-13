@@ -1,6 +1,9 @@
 // Array donde se guardan los libros
 const libros = [];
 
+// Variable para saber si estamos editando
+let indiceEditar = -1;
+
 // ==============================
 // VISTAS
 // ==============================
@@ -17,7 +20,7 @@ function mostrarVista(vistaId) {
 mostrarVista("vistaFormulario");
 
 // ==============================
-// CREAR
+// CREAR / ACTUALIZAR
 // ==============================
 
 // Se ejecuta cuando el usuario hace clic en "Guardar libro"
@@ -73,17 +76,22 @@ document.getElementById("formLibro").addEventListener("submit", function(evento)
     descripcion:    descripcion
   };
 
-  // Guardar en el array
-  libros.push(libro);
-
-  // Mostrar el libro en el historial
-  mostrarLibro(libro);
+  // CREAR o ACTUALIZAR
+  if (indiceEditar === -1) {
+    libros.push(libro);
+  } else {
+    libros[indiceEditar] = libro;
+    indiceEditar = -1;
+  }
 
   // Limpiar el formulario
   document.getElementById("formLibro").reset();
 
-  // Cambiar a la vista del historial para que el usuario vea el libro añadido
+  // Cambiar a la vista del historial
   mostrarVista("vistaHistorial");
+
+  // Volver a pintar todo
+  renderizarLibros();
 
 });
 
@@ -91,8 +99,25 @@ document.getElementById("formLibro").addEventListener("submit", function(evento)
 // LISTAR
 // ==============================
 
+// Vuelve a pintar todos los libros
+function renderizarLibros() {
+
+  const contenedor = document.getElementById("contenedor");
+  contenedor.innerHTML = "";
+
+  if (libros.length === 0) {
+    document.getElementById("vacio").style.display = "block";
+  } else {
+    document.getElementById("vacio").style.display = "none";
+
+    for (let i = 0; i < libros.length; i++) {
+      mostrarLibro(libros[i], i);
+    }
+  }
+}
+
 // Muestra un libro como una tarjeta en el historial
-function mostrarLibro(libro) {
+function mostrarLibro(libro, indice) {
 
   // Ocultar el mensaje "No hay libros"
   document.getElementById("vacio").style.display = "none";
@@ -130,7 +155,55 @@ function mostrarLibro(libro) {
   pDescripcion.textContent = "Descripción: " + libro.descripcion;
   tarjeta.appendChild(pDescripcion);
 
+  // ==============================
+  // BOTONES (EDITAR / ELIMINAR)
+  // ==============================
+
+  const btnEditar = document.createElement("button");
+  btnEditar.textContent = "Editar";
+  btnEditar.onclick = function() {
+    editarLibro(indice);
+  };
+  tarjeta.appendChild(btnEditar);
+
+  const btnEliminar = document.createElement("button");
+  btnEliminar.textContent = "Eliminar";
+  btnEliminar.onclick = function() {
+    eliminarLibro(indice);
+  };
+  tarjeta.appendChild(btnEliminar);
+
   // Añadir la tarjeta al contenedor del historial
   document.getElementById("contenedor").appendChild(tarjeta);
 
+}
+
+// ==============================
+// ELIMINAR
+// ==============================
+
+function eliminarLibro(indice) {
+
+  libros.splice(indice, 1);
+
+  renderizarLibros();
+}
+
+// ==============================
+// EDITAR
+// ==============================
+
+function editarLibro(indice) {
+
+  const libro = libros[indice];
+
+  document.getElementById("titulo").value = libro.titulo;
+  document.getElementById("autor").value = libro.autor;
+  document.getElementById("fecha").value = libro.fecha;
+  document.getElementById("categoria").value = libro.categoria;
+  document.getElementById("descripcion").value = libro.descripcion;
+
+  indiceEditar = indice;
+
+  mostrarVista("vistaFormulario");
 }
