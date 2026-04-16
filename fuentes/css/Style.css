@@ -1,4 +1,18 @@
-/* estilos generales */
+/* ===================================
+   ODS 4 – Educación de Calidad
+   Estilos principales
+   =================================== */
+
+
+/* ===================================
+   GENERAL
+   =================================== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 body {
     font-family: Arial, sans-serif;
@@ -6,56 +20,76 @@ body {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    margin: 0;
-    padding: 20px;
+    padding: 10px 16px;
     color: white;
+    height: 100vh;
+    overflow: hidden;
 }
 
+
+/* ===================================
+   TÍTULO PRINCIPAL
+   =================================== */
+
 h1 {
-    background-color: rgba(0, 0, 0, 0.6);
-    color: white;
+    font-size: 17px;
+    background-color: rgba(15, 20, 50, 0.92);
+    color: #FFD700;
     text-align: center;
-    padding: 22px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    border: 2px solid rgba(255, 215, 0, 0.45);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
 }
 
 h2 {
-    color: white;
-    margin-bottom: 14px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+    color: #FFD700;
+    margin-bottom: 12px;
     padding-bottom: 8px;
+    border-bottom: 2px solid rgba(255, 215, 0, 0.4);
+    letter-spacing: 1px;
 }
 
 
-/* navegacion */
+/* ===================================
+   NAVEGACIÓN
+   =================================== */
 
 #navegacion {
-    max-width: 580px;
-    margin: 0 auto 20px auto;
+    max-width: 700px;
+    margin: 0 auto 8px auto;
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 #navegacion button {
-    background-color: rgba(0, 0, 0, 0.5);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: rgba(15, 20, 50, 0.85);
     color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.25);
     flex: 1;
-    padding: 10px;
-    border-radius: 6px;
+    padding: 8px 10px;
+    border-radius: 7px;
     cursor: pointer;
-    font-size: 14px;
     margin-top: 0;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 #navegacion button:hover {
-    background-color: rgba(231, 76, 60, 0.85);
-    color: white;
+    background-color: rgba(200, 50, 40, 0.9);
+    border-color: rgba(255, 215, 0, 0.6);
+    color: #FFD700;
 }
 
 
-/* vistas, las que no se ven estan ocultas por js */
+/* ===================================
+   VISTAS
+   =================================== */
 
 #vistaFormulario {
     display: block;
@@ -70,134 +104,256 @@ h2 {
 }
 
 
-/* formulario */
+/* ===================================
+   FORMULARIO — CONTENEDOR
+   =================================== */
 
 form {
-    background-color: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(6px);
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 12px;
-    max-width: 580px;
+    background-color: rgba(15, 20, 50, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 16px 20px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 14px;
+    max-width: 700px;
     margin: 0 auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
 }
+
+/* Dos columnas para aprovechar el espacio */
+.fila-doble {
+    display: flex;
+    gap: 16px;
+}
+
+.fila-doble > div {
+    flex: 1;
+}
+
+
+/* ===================================
+   ETIQUETAS
+   =================================== */
 
 label {
+    display: block;
     font-weight: bold;
-    color: white;
-    font-size: 13px;
+    font-size: 11px;
+    color: #FFD700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
 }
 
-input[type="text"] {
-    width: 100%;
-    padding: 9px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.15);
-    color: white;
-    box-sizing: border-box;
-}
 
+/* ===================================
+   INPUTS TEXTO Y FECHA
+   =================================== */
+
+input[type="text"],
 input[type="date"] {
     width: 100%;
-    padding: 9px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.15);
+    padding: 7px 10px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.08);
     color: white;
-    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: border-color 0.2s, background-color 0.2s;
 }
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+    outline: none;
+    border-color: rgba(255, 215, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.13);
+}
+
+input[type="text"]::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ===================================
+   SELECT
+   =================================== */
 
 select {
     width: 100%;
-    padding: 9px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    font-size: 14px;
-    background-color: rgba(0, 0, 0, 0.5);
+    padding: 7px 10px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    background-color: rgba(10, 10, 30, 0.9);
     color: white;
-    box-sizing: border-box;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
 }
+
+select:focus {
+    outline: none;
+    border-color: rgba(255, 215, 0, 0.7);
+}
+
+select option {
+    background-color: #1a1a3a;
+    color: white;
+}
+
+
+/* ===================================
+   TEXTAREA
+   =================================== */
 
 textarea {
     width: 100%;
-    padding: 9px 12px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 6px;
-    font-size: 14px;
-    background-color: rgba(255, 255, 255, 0.15);
+    padding: 7px 10px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 7px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.08);
     color: white;
-    box-sizing: border-box;
-    height: 90px;
+    resize: none;
+    height: 58px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s, background-color 0.2s;
 }
 
-input[type="radio"] {
-    margin-right: 4px;
+textarea:focus {
+    outline: none;
+    border-color: rgba(255, 215, 0, 0.7);
+    background-color: rgba(255, 255, 255, 0.13);
 }
 
+textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ===================================
+   RADIO Y CHECKBOX
+   =================================== */
+
+input[type="radio"],
 input[type="checkbox"] {
+    accent-color: #FFD700;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
     margin-right: 4px;
+    vertical-align: middle;
 }
 
-/* botones del formulario */
+/* Texto de radio y checkbox más pequeño */
+input[type="radio"] ~ *,
+input[type="checkbox"] ~ * {
+    font-size: 13px;
+}
+
+
+/* ===================================
+   BOTONES
+   =================================== */
+
 button {
-    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 8px;
     margin-right: 8px;
-    padding: 10px 20px;
+    padding: 8px 20px;
     border: none;
-    border-radius: 6px;
-    font-size: 14px;
+    border-radius: 7px;
     cursor: pointer;
+    transition: background-color 0.2s, transform 0.15s;
 }
 
 button[type="submit"] {
-    background-color: rgba(231, 76, 60, 0.9);
+    background-color: #e74c3c;
     color: white;
+    border: 2px solid rgba(255, 100, 80, 0.4);
+}
+
+button[type="submit"]:hover {
+    background-color: #ff6b5b;
+    transform: translateY(-2px);
 }
 
 button[type="reset"] {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+button[type="reset"]:hover {
+    background-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-2px);
 }
 
 .btnEliminar {
-    background-color: rgba(231, 76, 60, 0.9);
+    background-color: #e74c3c;
     color: white;
+    border: 2px solid rgba(255, 100, 80, 0.4);
+}
+
+.btnEliminar:hover {
+    background-color: #ff6b5b;
+    transform: translateY(-2px);
 }
 
 
-/* historial */
+/* ===================================
+   HISTORIAL — CONTENEDOR
+   =================================== */
 
 #lista {
-    background-color: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(6px);
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 12px;
-    max-width: 580px;
+    background-color: rgba(15, 20, 50, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 16px 20px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 14px;
+    max-width: 700px;
     margin: 0 auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
 }
 
 #vacio {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     font-style: italic;
+    font-size: 13px;
+    text-align: center;
+    padding: 16px 0;
 }
 
+
+/* ===================================
+   TARJETAS DEL HISTORIAL
+   =================================== */
+
 .tarjeta {
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-left: 4px solid rgba(231, 76, 60, 0.9);
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 6px;
-    padding: 12px 16px;
-    margin-bottom: 12px;
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 4px solid #e74c3c;
+    border-radius: 9px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    transition: transform 0.15s, border-left-color 0.15s;
+}
+
+.tarjeta:hover {
+    transform: translateX(4px);
+    border-left-color: #FFD700;
 }
 
 .tarjeta p {
-    margin: 4px 0;
-    font-size: 14px;
-    color: white;
+    margin: 3px 0;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.4;
 }
