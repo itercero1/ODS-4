@@ -2,86 +2,77 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>ODS 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODS 4 – Educación de Calidad</title>
     <link rel="stylesheet" href="css/Style.css">
 </head>
 <body>
 
 <h1>ODS 4 – Educación de Calidad</h1>
 
-<!-- botones para cambiar de pantalla -->
+<!-- Botones para cambiar de pantalla -->
 <div id="navegacion">
     <button onclick="mostrarVista('vistaFormulario')">Añadir libro</button>
     <button onclick="mostrarVista('vistaHistorial')">Ver historial</button>
     <button onclick="mostrarVista('vistaJuego')">Juego</button>
 </div>
 
-
-<!-- VISTA 1 formulario -->
+<!-- Vista 1: Formulario -->
 <div id="vistaFormulario">
+    <form id="formLibro">
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" placeholder="Ej: El principito"><br><br>
 
-  <form id="formLibro">
+        <label for="autor">Autor:</label><br>
+        <input type="text" id="autor" placeholder="Ej: Antoine de Saint-Exupéry"><br><br>
 
-    <input type="hidden" id="libroId" value="1">
+        <label for="fecha">Fecha de publicación:</label><br>
+        <input type="date" id="fecha"><br><br>
 
-    <label for="titulo">Título:</label><br>
-    <input type="text" id="titulo" placeholder="Ej: El principito"><br><br>
+        <label for="categoria">Categoría:</label><br>
+        <select id="categoria">
+            <option value="">-- Elige --</option>
+            <option value="Primaria">Primaria</option>
+            <option value="Secundaria">Secundaria</option>
+            <option value="Universidad">Universidad</option>
+            <option value="Adultos">Adultos</option>
+        </select><br><br>
 
-    <label for="autor">Autor:</label><br>
-    <input type="text" id="autor" placeholder="Ej: Antoine de Saint-Exupéry"><br><br>
+        <!-- Idioma -->
+        <label>Idioma:</label><br>
+        <input type="radio" name="idioma" value="Español"> Español
+        <input type="radio" name="idioma" value="Inglés"> Inglés
+        <input type="radio" name="idioma" value="Francés"> Francés
+        <br><br>
 
-    <label for="fecha">Fecha de publicación:</label><br>
-    <input type="date" id="fecha"><br><br>
+        <label>Disponible en:</label><br>
+        <input type="checkbox" id="chkFisico" value="Físico"> Físico
+        <input type="checkbox" id="chkDigital" value="Digital"> Digital
+        <input type="checkbox" id="chkAudio" value="Audiolibro"> Audiolibro
+        <br><br>
 
-    <label for="categoria">Categoría:</label><br>
-    <select id="categoria">
-        <option value="">-- Elige --</option>
-        <option value="Primaria">Primaria</option>
-        <option value="Secundaria">Secundaria</option>
-        <option value="Universidad">Universidad</option>
-        <option value="Adultos">Adultos</option>
-    </select><br><br>
+        <label for="descripcion">Descripción:</label><br>
+        <textarea id="descripcion" rows="4" placeholder="Resumen del libro..."></textarea><br><br>
 
-    <!-- idioma -->
-    <label>Idioma:</label><br>
-    <input type="radio" name="idioma" value="Español"> Español
-    <input type="radio" name="idioma" value="Inglés"> Inglés
-    <input type="radio" name="idioma" value="Francés"> Francés
-    <br><br>
-
-    <label>Disponible en:</label><br>
-    <input type="checkbox" id="chkFisico" value="Físico"> Físico
-    <input type="checkbox" id="chkDigital" value="Digital"> Digital
-    <input type="checkbox" id="chkAudio" value="Audiolibro"> Audiolibro
-    <br><br>
-
-    <label for="descripcion">Descripción:</label><br>
-    <textarea id="descripcion" rows="4" placeholder="Resumen del libro..."></textarea><br><br>
-
-    <button type="submit">Guardar libro</button>
-    <button type="reset">Limpiar</button>
-
-  </form>
-
+        <button type="submit">Guardar libro</button>
+        <button type="reset">Limpiar</button>
+    </form>
 </div>
 
-
-<!-- VISTA 2 historial -->
-<div id="vistaHistorial">
-  <div id="lista">
-    <h2>Historial de libros</h2>
-    <p id="vacio">No hay libros todavía.</p>
-    <div id="contenedor"></div>
-  </div>
+<!-- Vista 2: Historial -->
+<div id="vistaHistorial" style="display: none;">
+    <div id="lista">
+        <h2>Historial de libros</h2>
+        <p id="vacio">No hay libros todavía.</p>
+        <div id="contenedor"></div>
+    </div>
 </div>
 
-
-<!-- VISTA 3 juego (pendiente) -->
-<div id="vistaJuego">
+<!-- Vista 3: Juego -->
+<div id="vistaJuego" style="display: none;">
+    <!-- Contenido del juego aquí -->
 </div>
 
-
-<script src="js/app.js"></script>
-
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

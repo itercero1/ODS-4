@@ -1,12 +1,12 @@
 # ODS 4 – Educación de Calidad
 
-Proyecto web para gestionar libros educativos. Forma parte del trabajo sobre los Objetivos de Desarrollo Sostenible, concretamente el ODS 4, que busca garantizar una educación de calidad.
+Proyecto web para gestionar libros educativos. Forma parte del trabajo sobre los Objetivos de Desarrollo Sostenible, concretamente el ODS 4, que busca garantizar una educación de calidad e inclusiva para todos.
 
-La aplicación permite añadir libros con sus datos (título, autor, categoría, idioma...) y verlos listados en pantalla.
+La aplicación permite añadir libros con metadatos específicos (título, autor, nivel educativo, idioma y formato) y consultarlos en un historial interactivo. También incluye una sección de juego para fomentar el aprendizaje.
 
 ---
 
-## Integrantes
+## 👥 Integrantes
 
 - Iván
 - Alberto
@@ -14,15 +14,27 @@ La aplicación permite añadir libros con sus datos (título, autor, categoría,
 
 ---
 
-## ¿Qué hay hecho?
+## 🎯 Historias de Usuario
 
-- Formulario HTML para añadir un libro
-- Estilos básicos con CSS
-- Lógica en JavaScript para crear un libro y mostrarlo en pantalla
+- **HU1 - Registro de recursos**: Como educador, quiero registrar libros detallando su nivel (Primaria, Secundaria, etc.) para organizar el material didáctico.
+- **HU2 - Consulta de catálogo**: Como estudiante, quiero ver el historial de libros disponibles para elegir mi próxima lectura.
+- **HU3 - Gestión de datos (CRUD)**: Como administrador, quiero editar o eliminar registros para mantener la calidad de la información.
+- **HU4 - Gamificación**: Como usuario, quiero acceder a una sección de juego para aprender sobre el ODS 4 de forma interactiva.
+- **HU5 - Usabilidad**: Como usuario, quiero navegar entre las diferentes secciones de la aplicación de forma rápida y sencilla.
 
 ---
 
-## Estructura de carpetas
+## ✅ ¿Qué hay hecho?
+
+- ✅ Formulario HTML completo con validaciones y campos dinámicos.
+- ✅ Estilos personalizados con CSS (tema ODS 4).
+- ✅ Arquitectura MVC: Controladores y modelos en JavaScript.
+- ✅ Lógica para crear, listar y gestionar libros.
+- ✅ Sistema de navegación entre Formulario, Historial y Juego.
+
+---
+
+## 📂 Estructura de carpetas
 
 ```
 ODS-4/
@@ -30,15 +42,15 @@ ODS-4/
 │   └── Backlog.md
 ├── fuentes/
 │   ├── controladores/
-│   │   ├── controlador_juego.js
-│   │   └── controlador_resultados.js
+│   │   └── ControladorLibreria.js
 │   ├── css/
-│   │   └── style.css
+│   │   └── Style.css
 │   ├── js/
 │   │   └── app.js
-│   └── modelos/
-│       ├── factura.js
-│       └── jugador.js
-├── index.html
+│   ├── modelos/
+│   │   ├── libros.js
+│   │   └── modeloLibreria.js
+│   └── index.html
+├── img/
 └── README.md
 ```
