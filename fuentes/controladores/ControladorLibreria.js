@@ -1,10 +1,13 @@
 import ModeloLibreria from '../modelos/modeloLibreria.js';
+import ControladorJuego from '../js/juego/ControladorJuego.js';
 
 export default class ControladorLibreria {
     #modelo;
+    #controladorJuego;
 
     constructor() {
         this.#modelo = new ModeloLibreria();
+        this.#controladorJuego = new ControladorJuego();
         this.inicializarEventos();
     }
 
@@ -75,6 +78,12 @@ export default class ControladorLibreria {
 
         if (vistaId === 'vistaHistorial') {
             this.#modelo.renderizarLibros();
+        }
+
+        if (vistaId === 'vistaJuego') {
+            this.#controladorJuego.iniciar();
+        } else {
+            this.#controladorJuego.detener();
         }
     }
 }

@@ -8,11 +8,11 @@ La aplicación permite registrar libros con metadatos (título, autor, nivel edu
 
 ## 👥 Integrantes
 
-| Nombre | Rol principal |
-|--------|---------------|
-| Iván | Estilos CSS, navegación y repositorio |
-| Alberto | Modelo de datos, lógica JS y documentación |
-| Alejandro | Formulario HTML, listado de libros y CRUD |
+| Nombre|
+|--------|
+| Iván |
+| Alberto | 
+| Alejandro |
 
 ---
 
@@ -86,8 +86,8 @@ La aplicación permite registrar libros con metadatos (título, autor, nivel edu
 | Editar libro (UPDATE) | ✅ Terminado |
 | Eliminar libro (DELETE) | ✅ Terminado |
 | Navegación entre vistas | ✅ Terminado |
-| Sección de juego | ⏳ Pendiente |
-| README completo | ✅ Terminado |
+| Sección de juego | ⏳ En Proceso |
+| README completo | ⏳ En Proceso |
 
 ---
 
