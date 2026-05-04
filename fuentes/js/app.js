@@ -1,4 +1,4 @@
-import ControladorLibreria from '../controladores/ControladorLibreria.js';
+import ControladorLibreria from '../controladores/controladorlibreria.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const controlador = new ControladorLibreria();
