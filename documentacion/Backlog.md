@@ -91,8 +91,8 @@
 |----|-------|------|-------|--------|
 | T26 | Integrar `ControladorJuego` en `ControladorLibreria.mostrarVista()` | JS |  | ✅ Terminado |
 | T27 | Usar imagen `MarioBros.png` como sprite del personaje en CSS | CSS |  | ✅ Terminado |
-| T28 | Pruebas manuales: formulario, historial y juego completo | Testing |  | 🔄 En proceso |
-| T29 | Corregir errores detectados en pruebas | Técnica |  | ⏳ Pendiente |
+| T28 | Pruebas manuales: formulario, historial y juego completo | Testing |  | ✅ Terminado |
+| T29 | Corregir errores detectados en pruebas | Técnica |  | ✅ Terminado |
 
 ---
 
@@ -100,10 +100,10 @@
 
 | ID | Tarea | Tipo | Quién | Estado |
 |----|-------|------|-------|--------|
-| T30 | Actualizar el README con la sección del juego completada | Documentación |  | ⏳ Pendiente |
-| T31 | Revisar y completar el `Backlog.md` con el estado final real | Documentación |  | ⏳ Pendiente |
-| T32 | Actualizar estructura de carpetas en el README (incluir `js/juego/`) | Documentación |  | ⏳ Pendiente |
-| T33 | Revisión final del código: comentarios y limpieza | Técnica |  | ⏳ Pendiente |
+| T30 | Actualizar el README con la sección del juego completada | Documentación |  | ✅ Terminado |
+| T31 | Revisar y completar el `Backlog.md` con el estado final real | Documentación |  | ✅ Terminado |
+| T32 | Actualizar estructura de carpetas en el README (incluir `js/juego/`) | Documentación |  | ✅ Terminado |
+| T33 | Revisión final del código: comentarios y limpieza | Técnica |  | ✅ Terminado |
 
 ---
 
@@ -111,5 +111,5 @@
 
 | ID | Tarea | Tipo | Quién | Estado |
 |----|-------|------|-------|--------|
-| T34 | Subir versión final al repositorio GitHub | Técnica |  | ⏳ Pendiente |
+| T34 | Subir versión final al repositorio GitHub | Técnica |  | ✅ Terminado |
 ---
