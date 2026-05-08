@@ -1,3 +1,44 @@
+/* ===================================
+   ANIMACIONES DEL JUEGO
+   =================================== */
+
+/* el libro gira lentamente para que llame la atencion */
+@keyframes girarLibro {
+    0%   { transform: rotate(-8deg) scale(1); }
+    50%  { transform: rotate(8deg) scale(1.08); }
+    100% { transform: rotate(-8deg) scale(1); }
+}
+
+/* el brillo del libro pulsa para que parezca que brilla de verdad */
+@keyframes brilloLibro {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(248, 200, 0, 0.4)); }
+    50%       { filter: drop-shadow(0 0 10px rgba(248, 200, 0, 0.9)); }
+}
+
+/* la puntuacion rebota un poco cuando sube (hay que activarla desde JS añadiendo la clase .subio) */
+@keyframes rebotarPuntuacion {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+/* animacion de entrada del contenedor del juego */
+@keyframes aparecerJuego {
+    from {
+        opacity: 0;
+        transform: scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* ===================================
+   CONTENEDOR DEL JUEGO
+   =================================== */
+
 #contenedorJuego {
     position: relative;
     width: 100%;
@@ -6,9 +47,18 @@
     background-size: cover;
     background-position: center;
     overflow: hidden;
-    border: 2px solid #333;
-    margin-top: 20px;
+    border: 3px solid rgba(255, 215, 0, 0.6);
+    border-radius: 12px;
+    margin-top: 16px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(0, 0, 0, 0.2);
+    /* animacion al entrar a la vista del juego */
+    animation: aparecerJuego 0.4s ease forwards;
 }
+
+
+/* ===================================
+   PERSONAJE
+   =================================== */
 
 .personaje {
     position: absolute;
@@ -20,22 +70,51 @@
     background-position: center;
     bottom: 0;
     left: 0;
+    /* sombra para que el personaje se recorte bien sobre el fondo */
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.5));
     transition: transform 0.1s;
 }
+
+
+/* ===================================
+   LIBROS DEL JUEGO
+   =================================== */
 
 .libro-juego {
     position: absolute;
     width: 30px;
     height: 35px;
-    background-color: #f1c40f; /* Yellow/Gold */
-    border: 1px solid #d35400;
-    border-radius: 2px;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    /* gradiente dorado para que parezca un libro de verdad */
+    background: linear-gradient(160deg, #f9d423, #e8a400);
+    border: 2px solid #d35400;
+    border-radius: 3px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    /* el libro gira y pulsa a la vez para que llame la atencion */
+    animation:
+        girarLibro 2s ease-in-out infinite,
+        brilloLibro 2s ease-in-out infinite;
 }
+
+
+/* ===================================
+   PUNTUACIÓN
+   =================================== */
 
 #puntuacion {
     font-family: Arial, sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 1px 1px 3px rgba(0, 0, 0, 0.8);
+    letter-spacing: 1px;
+    /* la transicion hace que la animacion de rebote se vea suave */
+    transition: transform 0.2s ease;
+}
+
+/* clase que se añade desde JS cuando sube la puntuacion para que rebote */
+/* ejemplo: document.querySelector('#puntuacion').classList.add('subio') */
+/* y luego se quita con setTimeout para que pueda volver a dispararse */
+#puntuacion.subio {
+    animation: rebotarPuntuacion 0.35s ease forwards;
 }

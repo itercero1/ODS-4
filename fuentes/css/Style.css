@@ -5,6 +5,55 @@
 
 
 /* ===================================
+   ANIMACIONES
+   aqui definimos todas las animaciones
+   que usamos en la pagina
+   =================================== */
+
+/* animacion para cuando aparece el formulario o el historial */
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* animacion del brillo que se mueve por el titulo */
+@keyframes brilloTitulo {
+    0%   { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+/* animacion para que el titulo "pulse" un poco */
+@keyframes pulsarBorde {
+    0%, 100% { border-color: rgba(255, 215, 0, 0.6); }
+    50%       { border-color: rgba(255, 215, 0, 1); }
+}
+
+/* animacion para que los libros del historial entren uno a uno */
+@keyframes entrarTarjeta {
+    from {
+        opacity: 0;
+        transform: translateX(-16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* efecto de parpadeo para el texto de lista vacia */
+@keyframes parpadear {
+    0%, 100% { opacity: 0.4; }
+    50%       { opacity: 0.8; }
+}
+
+
+/* ===================================
    GENERAL
    =================================== */
 
@@ -32,16 +81,30 @@ body {
    =================================== */
 
 h1 {
-    font-size: 17px;
-    background-color: rgba(15, 20, 50, 0.92);
+    font-size: 18px;
+    /* gradiente animado que simula un brillo moviendose por el texto */
+    background: linear-gradient(
+        90deg,
+        rgba(15, 20, 50, 0.97) 0%,
+        rgba(15, 20, 50, 0.97) 40%,
+        rgba(255, 215, 0, 0.15) 50%,
+        rgba(15, 20, 50, 0.97) 60%,
+        rgba(15, 20, 50, 0.97) 100%
+    );
+    background-size: 200% auto;
+    animation:
+        brilloTitulo 4s linear infinite,
+        pulsarBorde 3s ease-in-out infinite;
     color: #FFD700;
     text-align: center;
-    padding: 12px 20px;
-    border-radius: 10px;
-    margin-bottom: 8px;
-    border: 2px solid rgba(255, 215, 0, 0.45);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
-    letter-spacing: 1px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 215, 0, 0.2);
+    letter-spacing: 2px;
+    text-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    text-transform: uppercase;
 }
 
 h2 {
@@ -51,6 +114,8 @@ h2 {
     padding-bottom: 8px;
     border-bottom: 2px solid rgba(255, 215, 0, 0.4);
     letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.4);
 }
 
 
@@ -60,7 +125,7 @@ h2 {
 
 #navegacion {
     max-width: 700px;
-    margin: 0 auto 8px auto;
+    margin: 0 auto 10px auto;
     display: flex;
     gap: 8px;
 }
@@ -69,21 +134,31 @@ h2 {
     font-family: Arial, sans-serif;
     font-weight: bold;
     font-size: 12px;
-    background-color: rgba(15, 20, 50, 0.85);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.25);
+    background: linear-gradient(180deg, rgba(25, 30, 70, 0.9), rgba(10, 15, 45, 0.95));
+    color: #FFD700;
+    border: 2px solid rgba(255, 215, 0, 0.3);
     flex: 1;
-    padding: 8px 10px;
-    border-radius: 7px;
+    padding: 10px 10px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-top: 0;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    /* transicion suave para el hover */
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 #navegacion button:hover {
-    background-color: rgba(200, 50, 40, 0.9);
-    border-color: rgba(255, 215, 0, 0.6);
+    background: linear-gradient(180deg, rgba(200, 50, 40, 0.95), rgba(150, 30, 20, 0.95));
+    border-color: #FFD700;
     color: #FFD700;
+    box-shadow: 0 4px 14px rgba(200, 50, 40, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px); /* sube un poco al pasar el raton */
+}
+
+#navegacion button:active {
+    transform: translateY(1px); /* se hunde al hacer click */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -93,14 +168,18 @@ h2 {
 
 #vistaFormulario {
     display: block;
+    /* animacion de entrada al mostrar la vista */
+    animation: aparecer 0.35s ease forwards;
 }
 
 #vistaHistorial {
     display: none;
+    animation: aparecer 0.35s ease forwards;
 }
 
 #vistaJuego {
     display: none;
+    animation: aparecer 0.35s ease forwards;
 }
 
 
@@ -109,17 +188,17 @@ h2 {
    =================================== */
 
 form {
-    background-color: rgba(15, 20, 50, 0.92);
-    backdrop-filter: blur(8px);
-    padding: 16px 20px;
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    border-radius: 14px;
+    background: linear-gradient(160deg, rgba(15, 20, 55, 0.96), rgba(10, 10, 35, 0.97));
+    backdrop-filter: blur(10px);
+    padding: 18px 22px;
+    border: 2px solid rgba(255, 215, 0, 0.35);
+    border-radius: 16px;
     max-width: 700px;
     margin: 0 auto;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 215, 0, 0.1);
 }
 
-/* Dos columnas para aprovechar el espacio */
+/* dos columnas para aprovechar el espacio */
 .fila-doble {
     display: flex;
     gap: 16px;
@@ -139,9 +218,10 @@ label {
     font-weight: bold;
     font-size: 11px;
     color: #FFD700;
-    letter-spacing: 0.6px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     margin-bottom: 4px;
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
 }
 
 
@@ -152,26 +232,28 @@ label {
 input[type="text"],
 input[type="date"] {
     width: 100%;
-    padding: 7px 10px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: 7px;
+    padding: 8px 11px;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
     font-family: Arial, sans-serif;
     font-size: 13px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.06);
     color: white;
     margin-bottom: 10px;
-    transition: border-color 0.2s, background-color 0.2s;
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
 input[type="text"]:focus,
 input[type="date"]:focus {
     outline: none;
-    border-color: rgba(255, 215, 0, 0.7);
-    background-color: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 215, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    /* brillo dorado al hacer focus, como si se "activara" */
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
 }
 
 input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -181,21 +263,22 @@ input[type="text"]::placeholder {
 
 select {
     width: 100%;
-    padding: 7px 10px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: 7px;
+    padding: 8px 11px;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
     font-family: Arial, sans-serif;
     font-size: 13px;
-    background-color: rgba(10, 10, 30, 0.9);
+    background-color: rgba(10, 10, 30, 0.92);
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 select:focus {
     outline: none;
-    border-color: rgba(255, 215, 0, 0.7);
+    border-color: rgba(255, 215, 0, 0.8);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
 }
 
 select option {
@@ -210,27 +293,28 @@ select option {
 
 textarea {
     width: 100%;
-    padding: 7px 10px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
-    border-radius: 7px;
+    padding: 8px 11px;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
     font-family: Arial, sans-serif;
     font-size: 13px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(255, 255, 255, 0.06);
     color: white;
     resize: none;
     height: 58px;
     margin-bottom: 10px;
-    transition: border-color 0.2s, background-color 0.2s;
+    transition: border-color 0.2s, background-color 0.2s, box-shadow 0.2s;
 }
 
 textarea:focus {
     outline: none;
-    border-color: rgba(255, 215, 0, 0.7);
-    background-color: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 215, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
 }
 
 textarea::placeholder {
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -248,7 +332,6 @@ input[type="checkbox"] {
     vertical-align: middle;
 }
 
-/* Texto de radio y checkbox más pequeño */
 input[type="radio"] ~ *,
 input[type="checkbox"] ~ * {
     font-size: 13px;
@@ -262,47 +345,68 @@ input[type="checkbox"] ~ * {
 button {
     font-family: Arial, sans-serif;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 12px;
     margin-top: 8px;
     margin-right: 8px;
-    padding: 8px 20px;
+    padding: 9px 20px;
     border: none;
-    border-radius: 7px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.15s;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
 }
 
 button[type="submit"] {
-    background-color: #e74c3c;
+    background: linear-gradient(180deg, #e74c3c, #c0392b);
     color: white;
-    border: 2px solid rgba(255, 100, 80, 0.4);
+    border: 2px solid rgba(255, 100, 80, 0.5);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 button[type="submit"]:hover {
-    background-color: #ff6b5b;
+    background: linear-gradient(180deg, #ff6b5b, #e74c3c);
+    box-shadow: 0 6px 18px rgba(231, 76, 60, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 6px rgba(231, 76, 60, 0.4);
 }
 
 button[type="reset"] {
-    background-color: rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.8);
     border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
 button[type="reset"]:hover {
-    background-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.35);
     transform: translateY(-2px);
+}
+
+button[type="reset"]:active {
+    transform: translateY(1px);
 }
 
 .btnEliminar {
-    background-color: #e74c3c;
+    background: linear-gradient(180deg, #e74c3c, #c0392b);
     color: white;
-    border: 2px solid rgba(255, 100, 80, 0.4);
+    border: 2px solid rgba(255, 100, 80, 0.5);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .btnEliminar:hover {
-    background-color: #ff6b5b;
+    background: linear-gradient(180deg, #ff6b5b, #e74c3c);
+    box-shadow: 0 6px 18px rgba(231, 76, 60, 0.6);
     transform: translateY(-2px);
+}
+
+.btnEliminar:active {
+    transform: translateY(1px);
 }
 
 
@@ -311,24 +415,45 @@ button[type="reset"]:hover {
    =================================== */
 
 #lista {
-    background-color: rgba(15, 20, 50, 0.92);
-    backdrop-filter: blur(8px);
-    padding: 16px 20px;
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    border-radius: 14px;
+    background: linear-gradient(160deg, rgba(15, 20, 55, 0.96), rgba(10, 10, 35, 0.97));
+    backdrop-filter: blur(10px);
+    padding: 18px 22px;
+    border: 2px solid rgba(255, 215, 0, 0.35);
+    border-radius: 16px;
     max-width: 700px;
     margin: 0 auto;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 215, 0, 0.1);
     max-height: calc(100vh - 120px);
     overflow-y: auto;
 }
 
+/* scrollbar personalizada para que combine con el diseño */
+#lista::-webkit-scrollbar {
+    width: 6px;
+}
+
+#lista::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+#lista::-webkit-scrollbar-thumb {
+    background: rgba(255, 215, 0, 0.4);
+    border-radius: 3px;
+}
+
+#lista::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 215, 0, 0.7);
+}
+
+/* texto cuando no hay libros, parpadea para llamar la atencion */
 #vacio {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     font-style: italic;
     font-size: 13px;
     text-align: center;
-    padding: 16px 0;
+    padding: 20px 0;
+    animation: parpadear 2.5s ease-in-out infinite;
 }
 
 
@@ -337,23 +462,48 @@ button[type="reset"]:hover {
    =================================== */
 
 .tarjeta {
-    background-color: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-left: 4px solid #e74c3c;
-    border-radius: 9px;
-    padding: 12px 14px;
+    border-radius: 10px;
+    padding: 13px 16px;
     margin-bottom: 10px;
-    transition: transform 0.15s, border-left-color 0.15s;
+    /* animacion de entrada en cascada usando nth-child */
+    animation: entrarTarjeta 0.3s ease forwards;
+    transition: transform 0.2s ease, border-left-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
+/* cada tarjeta entra con un pequeño retraso para el efecto en cascada */
+.tarjeta:nth-child(1) { animation-delay: 0.05s; }
+.tarjeta:nth-child(2) { animation-delay: 0.10s; }
+.tarjeta:nth-child(3) { animation-delay: 0.15s; }
+.tarjeta:nth-child(4) { animation-delay: 0.20s; }
+.tarjeta:nth-child(5) { animation-delay: 0.25s; }
+.tarjeta:nth-child(6) { animation-delay: 0.30s; }
+.tarjeta:nth-child(7) { animation-delay: 0.35s; }
+.tarjeta:nth-child(8) { animation-delay: 0.40s; }
+
 .tarjeta:hover {
-    transform: translateX(4px);
+    transform: translateX(5px);
     border-left-color: #FFD700;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), -2px 0 10px rgba(255, 215, 0, 0.15);
+}
+
+.tarjeta h3 {
+    font-size: 14px;
+    color: #FFD700;
+    margin-bottom: 6px;
+    text-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
 }
 
 .tarjeta p {
     margin: 3px 0;
     font-size: 12px;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+}
+
+.tarjeta p strong {
+    color: rgba(255, 215, 0, 0.8);
 }
